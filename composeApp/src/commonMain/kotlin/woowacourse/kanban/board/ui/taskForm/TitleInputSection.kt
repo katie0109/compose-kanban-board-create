@@ -18,14 +18,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.design.ColorPalette
 import woowacourse.kanban.board.design.Font
-import java.awt.Color
-import java.awt.SystemColor.text
+
 
 @Composable
 fun TitleInputSection() {
@@ -59,6 +59,12 @@ private fun TitleInputField() {
             title = it
         },
         placeholder = {
-            Text(text = "태스크 제목을 입력하세요") }
+            Text(
+                text = "태스크 제목을 입력하세요",
+                fontSize = Font.FORMINPUT.size,
+                fontWeight = Font.FORMINPUT.weight,
+                color = Color(0xFFAAAAAA)
+            )
+        }
     )
 }
