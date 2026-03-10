@@ -1,40 +1,58 @@
-This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
+# compose-kanban-board-create
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+## 구현할 기능 목록
 
-### Build and Run Android Application
+## 테스크 생성
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+### 제목
 
-### Build and Run Desktop (JVM) Application
+- "제목 *" 가 표시된다. 
+- 제목을 입력받는 박스가 있다. 
+- 입력하기 전, "태스크 제목을 입력하세요"라는 문구가 있다.
+- 제목은 필수적으로 입력되어야 한다. 
+  - 입력되지 않을 경우, "제목을 입력해 주세요." 라고 뜨고 박스가 빨강색으로 변경된다. 
 
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
+### 설명 
 
----
+- "설명" 가 표시된다. 
+- 설명을 입력받는 박스가 있다. 
+- 입력하기 전, "태스크에 대한 자세한 설명을 입력하세요"라는 문구가 있다.
+- 설명은 공란일 수 있다.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+### 태그 
+
+- "태그" 가 표시된다.
+- 태그를 입력받는 박스가 있다. 
+- 입력하기 전, "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)"라는 문구가 있다.
+- 입력하기 전, 박스의 하단에 "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다."라는 문구가 있다.
+- 태그의 형식을 확인해야한다.
+  - 태그는 쉼표로 구분되어야 한다. 
+  - 각 태그가 5글자 이내여야 한다. 
+  - 태그의 갯수는 5개 이하여야 한다.
+- 태그가 형식에 맞지 않을 경우 에러 문구와 아이콘을 표시해야한다. 
+  - 태그 형식이 올바르지 않을 경우 -> "태그 형식이 올바르지 않습니다."
+  - 태그의 글자 수 혹은 갯수가 올바르지 않을 경우 -> "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
+
+### 상태
+
+- "상태 *" 가 표시된다. 
+- 상태는 To do, In Progress, Done 버튼이 있다. 
+- 버튼을 클릭하면 테두리와 글자가 파란색으로 변경된다. 
+- 상태 버튼의 기본적으로 To do로 체크되어있다.
+- 상태 버튼은 한 항목만 선택 가능하다.
+
+### 담당자
+
+- "담당자 *" 가 표시된다. 
+- 담당자는 기본으로 첫번째 항목으로 선택되어있다. 
+- 담당자에는 "다이노"와 "페임스" 버튼이 있다. 
+- 담당자 버튼은 한 항목만 선택 가능하다.
+- 담당자에는 "아이콘 담당자이름"으로 구성되어있다. 
+
+### 태스크 생성 박스
+
+- 상단에는 "새 테스크 생성" 과 "x" 버튼이 있다. 
+- 하단에는 "취소"와 "생성" 버튼이 있다. 
+- 생성 버튼은 기본적으로 비활성화 상태이다.
+  - 제목이 입력될 경우 생성 버튼이 활성화 상태로 변한다. 
+  - 올바르지 않은 입력이 존재할 경우 생성 버튼이 다시 비활성화 상태로 변한다. 
