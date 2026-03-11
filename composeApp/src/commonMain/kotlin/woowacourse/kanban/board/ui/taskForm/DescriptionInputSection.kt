@@ -2,6 +2,7 @@ package woowacourse.kanban.board.ui.taskForm
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -27,9 +28,8 @@ fun DescriptionInputSection() {
             text = "설명",
             fontSize = Font.FORMTITLE.size,
             fontWeight = Font.FORMTITLE.weight,
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(8.dp).fillMaxWidth(),
         )
-        Spacer(modifier = Modifier.height(8.dp))
         DescriptionInputField()
     }
 }
@@ -59,9 +59,6 @@ private fun DescriptionInputField() {
                 color = Color(0xFFAAAAAA)
             )
         },
-        modifier = Modifier.height(150.dp),
-
-
-
+        modifier = Modifier.height(150.dp).fillMaxWidth(),
     )
 }
