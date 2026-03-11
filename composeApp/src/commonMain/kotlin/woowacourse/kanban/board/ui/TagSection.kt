@@ -12,7 +12,7 @@ import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.design.Font
 
 @Composable
-fun TagView(tag: Tag) {
+fun TagSection(tag: Tag) {
     Text(
         text = tag.text,
         fontSize = Font.TAG.size,

@@ -16,7 +16,7 @@ import woowacourse.kanban.board.design.Font
 import woowacourse.kanban.board.model.Assignee
 
 @Composable
-fun AssigneeView(assignee: Assignee) {
+fun AssigneeSection(assignee: Assignee) {
     Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
         Icon(
             imageVector = Icons.Default.AccountCircle,

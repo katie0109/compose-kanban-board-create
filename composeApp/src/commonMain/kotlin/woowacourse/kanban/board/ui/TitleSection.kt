@@ -11,7 +11,7 @@ import woowacourse.kanban.board.design.Font
 
 
 @Composable
-fun TitleView(title: Title) {
+fun TitleSection(title: Title) {
     Text(
         text = title.text,
         fontSize = Font.TITLE.size,

@@ -20,8 +20,8 @@ import woowacourse.kanban.board.model.TaskCard
 import woowacourse.kanban.board.model.Title
 
 @Composable
-fun TaskCardView(taskCard: TaskCard) {
-    TaskCardView(
+fun TaskCardSection(taskCard: TaskCard) {
+    TaskCardSection(
         title = Title(taskCard.title),
         description = Description(taskCard.description),
         tagGroup = TagGroup(tags = taskCard.tags),
@@ -30,7 +30,7 @@ fun TaskCardView(taskCard: TaskCard) {
 }
 
 @Composable
-fun TaskCardView(
+fun TaskCardSection(
     title: Title,
     description: Description,
     tagGroup: TagGroup,
@@ -43,15 +43,15 @@ fun TaskCardView(
         ).width(250.dp).padding(8.dp),
     ) {
         Column {
-            TitleView(title = title)
+            TitleSection(title = title)
             if (!description.isBlank()) {
-                DescriptionView(description = description)
+                DescriptionSection(description = description)
             }
             if (!tagGroup.isEmpty()) {
-                TagGroupView(tagGroup = tagGroup)
+                TagGroupSection(tagGroup = tagGroup)
             }
             HorizontalDivider(modifier = Modifier.background(Color.Gray))
-            AssigneeView(assignee = assignee)
+            AssigneeSection(assignee = assignee)
         }
     }
 }

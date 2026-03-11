@@ -11,7 +11,7 @@ import woowacourse.kanban.board.model.Description
 import woowacourse.kanban.board.design.Font
 
 @Composable
-fun DescriptionView(description: Description) {
+fun DescriptionSection(description: Description) {
     Text(
         text = description.text,
         fontSize = Font.DESCRIPTION.size,

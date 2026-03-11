@@ -9,14 +9,14 @@ import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.TagGroup
 
 @Composable
-fun TagGroupView(tagGroup: TagGroup) {
+fun TagGroupSection(tagGroup: TagGroup) {
     FlowRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
         modifier = Modifier.padding(8.dp),
     ) {
         tagGroup.tags.forEach {
-            TagView(tag = it)
+            TagSection(tag = it)
         }
     }
 }

@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TaskCard
-import woowacourse.kanban.board.ui.TaskCardView
+import woowacourse.kanban.board.ui.TaskCardSection
 
 private class TaskCardProvider : PreviewParameterProvider<TaskCard> {
     override val values: Sequence<TaskCard> = sequenceOf(
@@ -51,7 +51,7 @@ fun TaskCardPreview(
     @PreviewParameter(TaskCardProvider::class) taskCard: TaskCard,
 ) {
     MaterialTheme {
-        TaskCardView(taskCard = taskCard)
+        TaskCardSection(taskCard = taskCard)
     }
 }
 
@@ -64,7 +64,9 @@ fun App() {
         modifier = Modifier.padding(20.dp),
     ) {
         TaskCardProvider().values.forEach { taskCard ->
-            TaskCardView(taskCard = taskCard)
+            TaskCardSection(taskCard = taskCard)
         }
     }
 }
+
+
