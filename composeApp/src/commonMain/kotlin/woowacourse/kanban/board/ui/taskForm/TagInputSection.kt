@@ -2,6 +2,7 @@ package woowacourse.kanban.board.ui.taskForm
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -27,7 +28,6 @@ fun TagInputSection() {
             fontWeight = Font.FORMTITLE.weight,
             modifier = Modifier.padding(8.dp),
         )
-        Spacer(modifier = Modifier.height(8.dp))
         TagInputField()
     }
 }
@@ -62,6 +62,7 @@ private fun TagInputField() {
                 fontSize = Font.FORMEXPLAIN.size,
                 fontWeight = Font.FORMEXPLAIN.weight
             )
-        }
+        },
+        modifier = Modifier.fillMaxWidth()
     )
 }
