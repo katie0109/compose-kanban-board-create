@@ -15,10 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,12 +25,11 @@ import woowacourse.kanban.board.ui.AssigneeSection
 
 
 @Composable
-fun AssigneeInputSection() {
-    val assignees = listOf(
-        Assignee("다이노"),
-        Assignee("페임스")
-    )
-    var selected by remember { mutableStateOf(assignees.first()) }
+fun AssigneeInputSection(
+    assignees: List<Assignee>,
+    selected: Assignee,
+    onSelect: (Assignee) -> Unit,
+) {
     Column {
         Text(
             text = "담당자 *",
@@ -45,7 +40,7 @@ fun AssigneeInputSection() {
         AssigneeField(
             assignees = assignees,
             selected = selected,
-            onSelect = { selected = it }
+            onSelect = onSelect
         )
     }
 }
@@ -57,12 +52,11 @@ private fun AssigneeInputSectionPreview() {
         Assignee("다이노"),
         Assignee("페임스")
     )
-    var selected by remember { mutableStateOf(assignees.first()) }
     MaterialTheme {
-        AssigneeField(
+        AssigneeInputSection(
             assignees = assignees,
-            selected = selected,
-            onSelect = { selected = it }
+            selected = assignees.first(),
+            onSelect = {},
         )
     }
 }

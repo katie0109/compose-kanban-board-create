@@ -29,7 +29,9 @@ private fun ButtonFieldDisabledPreview() {
 }
 
 @Composable
-fun TaskCreateBottomSection() {
+fun TaskCreateBottomSection(
+    isCreateEnabled: Boolean = true,
+) {
     Column(
         modifier = Modifier.fillMaxWidth(),
     ) {
@@ -53,6 +55,7 @@ fun TaskCreateBottomSection() {
             }
             Button(
                 onClick = {},
+                enabled = isCreateEnabled,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF4F39F6)

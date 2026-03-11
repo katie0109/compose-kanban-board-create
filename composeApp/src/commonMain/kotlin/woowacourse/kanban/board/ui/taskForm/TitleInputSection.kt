@@ -31,7 +31,11 @@ import woowacourse.kanban.board.design.Font
 
 
 @Composable
-fun TitleInputSection() {
+fun TitleInputSection(
+    title: String,
+    onTitleChange: (String) -> Unit = {},
+    onErrorChange: (Boolean) -> Unit = {},
+) {
     Column {
         Text(
             text = "제목 *",
@@ -39,7 +43,11 @@ fun TitleInputSection() {
             fontWeight = Font.FORMTITLE.weight,
             modifier = Modifier.padding(8.dp).fillMaxWidth(),
         )
-        TitleInputField()
+        TitleInputField(
+            title = title,
+            onTitleChange = onTitleChange,
+            onErrorChange = onErrorChange,
+        )
     }
 }
 
@@ -47,13 +55,21 @@ fun TitleInputSection() {
 @Composable
 private fun TitleInputPreview() {
     MaterialTheme {
-        TitleInputSection()
+        var title: String by remember { mutableStateOf("") }
+        TitleInputSection(
+            title = title,
+            onTitleChange = { title = it },
+            onErrorChange = {},
+        )
     }
 }
 
 @Composable
-private fun TitleInputField() {
-    var title: String by remember { mutableStateOf("") }
+private fun TitleInputField(
+    title: String,
+    onTitleChange: (String) -> Unit,
+    onErrorChange: (Boolean) -> Unit,
+) {
     var isEmptyError by remember { mutableStateOf(false) }
     var isFocused by remember { mutableStateOf(false) }
     val supportingText by remember {
@@ -65,7 +81,7 @@ private fun TitleInputField() {
     OutlinedTextField(
         value = title,
         onValueChange = {
-            title = it
+            onTitleChange(it)
         },
         isError = isEmptyError,
         placeholder = {
@@ -82,6 +98,7 @@ private fun TitleInputField() {
                 isFocused = focusState.isFocused
                 if(!isFocused&&title.isEmpty()) isEmptyError = true
                 else isEmptyError= false
+                onErrorChange(isEmptyError)
             },
         supportingText = {
             Text(

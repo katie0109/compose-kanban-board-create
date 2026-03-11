@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +26,10 @@ import woowacourse.kanban.board.design.Font
 import java.util.regex.Pattern
 
 @Composable
-fun TagInputSection() {
+fun TagInputSection(
+    onTagsChange: (String) -> Unit = {},
+    onErrorChange: (Boolean) -> Unit = {},
+) {
     Column {
         Text(
             text = "태그",
@@ -33,7 +37,10 @@ fun TagInputSection() {
             fontWeight = Font.FORMTITLE.weight,
             modifier = Modifier.padding(8.dp),
         )
-        TagInputField()
+        TagInputField(
+            onTagsChange = onTagsChange,
+            onErrorChange = onErrorChange,
+        )
     }
 }
 
@@ -41,12 +48,18 @@ fun TagInputSection() {
 @Composable
 private fun TagInputPreview() {
     MaterialTheme {
-        TagInputSection()
+        TagInputSection(
+            onTagsChange = {},
+            onErrorChange = {},
+        )
     }
 }
 
 @Composable
-private fun TagInputField() {
+private fun TagInputField(
+    onTagsChange: (String) -> Unit,
+    onErrorChange: (Boolean) -> Unit,
+) {
     var tags: String by remember { mutableStateOf("") }
     val tagsPattern = remember{
         Pattern.compile("^[^,]+(\\s*,\\s*[^,]+)*\$")
@@ -74,10 +87,16 @@ private fun TagInputField() {
             }
         }
     }
+
+    LaunchedEffect(isFormError, isCountError) {
+        onErrorChange(isFormError || isCountError)
+    }
+
     OutlinedTextField(
         value = tags,
         onValueChange = {
             tags = it
+            onTagsChange(it)
         },
         textStyle = TextStyle(color = if (isFormError || isCountError) MaterialTheme.colorScheme.error else Color.Black),
         isError = isFormError||isCountError,

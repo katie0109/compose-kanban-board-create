@@ -22,7 +22,10 @@ import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.design.Font
 
 @Composable
-fun DescriptionInputSection() {
+fun DescriptionInputSection(
+    description: String,
+    onDescriptionChange: (String) -> Unit = {},
+) {
     Column {
         Text(
             text = "설명",
@@ -30,7 +33,10 @@ fun DescriptionInputSection() {
             fontWeight = Font.FORMTITLE.weight,
             modifier = Modifier.padding(8.dp).fillMaxWidth(),
         )
-        DescriptionInputField()
+        DescriptionInputField(
+            description = description,
+            onDescriptionChange = onDescriptionChange,
+        )
     }
 }
 
@@ -39,17 +45,23 @@ fun DescriptionInputSection() {
 @Composable
 private fun DescriptionInputPreview() {
     MaterialTheme {
-        DescriptionInputSection()
+        var description: String by remember { mutableStateOf("") }
+        DescriptionInputSection(
+            description = description,
+            onDescriptionChange = { description = it },
+        )
     }
 }
 
 @Composable
-private fun DescriptionInputField() {
-    var description: String by remember { mutableStateOf("") }
+private fun DescriptionInputField(
+    description: String,
+    onDescriptionChange: (String) -> Unit,
+) {
     OutlinedTextField(
         value = description,
         onValueChange = {
-            description = it
+            onDescriptionChange(it)
         },
         placeholder = {
             Text(
