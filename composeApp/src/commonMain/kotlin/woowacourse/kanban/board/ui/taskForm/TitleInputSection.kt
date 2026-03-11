@@ -32,7 +32,6 @@ import woowacourse.kanban.board.design.Font
 
 @Composable
 fun TitleInputSection() {
-    val isFilled = remember{mutableStateOf(false)}
     Column {
         Text(
             text = "제목 *",
@@ -40,6 +39,7 @@ fun TitleInputSection() {
             fontWeight = Font.FORMTITLE.weight,
             modifier = Modifier.padding(8.dp).fillMaxWidth(),
         )
+        TitleInputField()
     }
 }
 
@@ -52,7 +52,7 @@ private fun TitleInputPreview() {
 }
 
 @Composable
-private fun TitleInputField(onCheckFilled:(Boolean) -> Unit) {
+private fun TitleInputField() {
     var title: String by remember { mutableStateOf("") }
     var isEmptyError by remember { mutableStateOf(false) }
     var isFocused by remember { mutableStateOf(false) }
@@ -66,7 +66,6 @@ private fun TitleInputField(onCheckFilled:(Boolean) -> Unit) {
         value = title,
         onValueChange = {
             title = it
-            onCheckFilled(it.isNotEmpty())
         },
         isError = isEmptyError,
         placeholder = {
