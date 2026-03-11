@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,9 +35,8 @@ fun TitleInputSection() {
             text = "제목 *",
             fontSize = Font.FORMTITLE.size,
             fontWeight = Font.FORMTITLE.weight,
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(8.dp).fillMaxWidth(),
         )
-        Spacer(modifier = Modifier.height(8.dp))
         TitleInputField()
     }
 }
@@ -53,7 +53,6 @@ private fun TitleInputPreview() {
 private fun TitleInputField() {
     var title: String by remember { mutableStateOf("") }
     OutlinedTextField(
-
         value = title,
         onValueChange = {
             title = it
@@ -65,6 +64,7 @@ private fun TitleInputField() {
                 fontWeight = Font.FORMINPUT.weight,
                 color = Color(0xFFAAAAAA)
             )
-        }
+        },
+        modifier = Modifier.fillMaxWidth()
     )
 }
