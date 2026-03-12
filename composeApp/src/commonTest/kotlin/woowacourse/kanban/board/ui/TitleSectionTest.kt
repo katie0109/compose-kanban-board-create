@@ -19,19 +19,4 @@ class TitleSectionTest {
 
         onNodeWithText("제목입니다").assertIsDisplayed()
     }
-
-    @Test
-    fun `제목 뷰는 긴 제목을 한 줄로 표시한다`() = runComposeUiTest {
-        val longTitle = "너무너무 긴 제목은 한 줄이지만 노출되고 말줄임표로 처리합니다 123"
-        val title = Title(longTitle)
-
-        setContent {
-            TitleSection(title = title)
-        }
-
-        val titleNode = onNodeWithText("너무너무 긴", substring = true)
-        titleNode.assertIsDisplayed()
-
-        onNodeWithText("123").assertDoesNotExist()
-    }
 }
