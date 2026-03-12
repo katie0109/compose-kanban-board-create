@@ -24,7 +24,7 @@ class TaskCardSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            TaskCardView(
+            TaskCardSection(
                 title = title,
                 description = description,
                 tagGroup = tagGroup,
@@ -43,7 +43,7 @@ class TaskCardSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            TaskCardView(
+            TaskCardSection(
                 title = title,
                 description = description,
                 tagGroup = tagGroup,
@@ -63,7 +63,7 @@ class TaskCardSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            TaskCardView(
+            TaskCardSection(
                 title = title,
                 description = description,
                 tagGroup = tagGroup,
@@ -82,7 +82,7 @@ class TaskCardSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            TaskCardView(
+            TaskCardSection(
                 title = title,
                 description = description,
                 tagGroup = tagGroup,
@@ -103,7 +103,7 @@ class TaskCardSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            TaskCardView(
+            TaskCardSection(
                 title = title,
                 description = description,
                 tagGroup = tagGroup,
@@ -123,7 +123,7 @@ class TaskCardSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            TaskCardView(
+            TaskCardSection(
                 title = title,
                 description = description,
                 tagGroup = tagGroup,

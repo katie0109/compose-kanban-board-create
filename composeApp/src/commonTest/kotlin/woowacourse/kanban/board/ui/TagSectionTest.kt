@@ -14,7 +14,7 @@ class TagSectionTest {
         val tag = Tag("태그")
 
         setContent {
-            TagView(tag = tag)
+            TagSection(tag = tag)
         }
 
         onNodeWithText("태그").assertIsDisplayed()
@@ -27,7 +27,7 @@ class TagSectionTest {
         setContent {
             androidx.compose.foundation.layout.Row {
                 tags.forEach { tag ->
-                    TagView(tag = tag)
+                    TagSection(tag = tag)
                 }
             }
         }
@@ -42,7 +42,7 @@ class TagSectionTest {
         val tag = Tag("다섯글자다")
 
         setContent {
-            TagView(tag = tag)
+            TagSection(tag = tag)
         }
 
         onNodeWithText("다섯글자다").assertIsDisplayed()

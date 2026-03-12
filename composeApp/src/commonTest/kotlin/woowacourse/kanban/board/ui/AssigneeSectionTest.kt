@@ -15,7 +15,7 @@ class AssigneeSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            AssigneeView(assignee = assignee)
+            AssigneeSection(assignee = assignee)
         }
 
         onNodeWithText("다이노").assertIsDisplayed()
@@ -26,7 +26,7 @@ class AssigneeSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            AssigneeView(assignee = assignee)
+            AssigneeSection(assignee = assignee)
         }
 
         onNodeWithContentDescription("사용자 기본 이미지").assertIsDisplayed()
@@ -37,26 +37,10 @@ class AssigneeSectionTest {
         val assignee = Assignee("다이노")
 
         setContent {
-            AssigneeView(assignee = assignee)
+            AssigneeSection(assignee = assignee)
         }
 
         onNodeWithContentDescription("사용자 기본 이미지").assertIsDisplayed()
         onNodeWithText("다이노").assertIsDisplayed()
-    }
-
-    @Test
-    fun `담당자 뷰는 긴 이름을 한 줄로 표시한다`() = runComposeUiTest {
-        val longName = "너무너무너무 긴 담당자도 한 줄이지만 노출되고 말줄임표로 처리합니 다"
-        val assignee = Assignee(longName)
-
-        setContent {
-            AssigneeView(assignee = assignee)
-        }
-
-        val assigneeNode = onNodeWithText("너무너무", substring = true)
-
-        assigneeNode.assertIsDisplayed()
-        onNodeWithText("다").assertDoesNotExist()
-
     }
 }

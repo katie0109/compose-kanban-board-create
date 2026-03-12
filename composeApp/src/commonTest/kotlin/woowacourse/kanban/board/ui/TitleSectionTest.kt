@@ -14,7 +14,7 @@ class TitleSectionTest {
         val title = Title("제목입니다")
 
         setContent {
-            TitleView(title = title)
+            TitleSection(title = title)
         }
 
         onNodeWithText("제목입니다").assertIsDisplayed()
@@ -26,7 +26,7 @@ class TitleSectionTest {
         val title = Title(longTitle)
 
         setContent {
-            TitleView(title = title)
+            TitleSection(title = title)
         }
 
         val titleNode = onNodeWithText("너무너무 긴", substring = true)

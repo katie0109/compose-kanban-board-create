@@ -15,7 +15,7 @@ class TagGroupSectionTest {
         val tagGroup = TagGroup(emptyList())
 
         setContent {
-            TagGroupView(tagGroup = tagGroup)
+            TagGroupSection(tagGroup = tagGroup)
         }
     }
 
@@ -24,7 +24,7 @@ class TagGroupSectionTest {
         val tagGroup = TagGroup(listOf(Tag("Front")))
 
         setContent {
-            TagGroupView(tagGroup = tagGroup)
+            TagGroupSection(tagGroup = tagGroup)
         }
 
         onNodeWithText("Front").assertIsDisplayed()
@@ -43,7 +43,7 @@ class TagGroupSectionTest {
         )
 
         setContent {
-            TagGroupView(tagGroup = tagGroup)
+            TagGroupSection(tagGroup = tagGroup)
         }
 
         onNodeWithText("1").assertIsDisplayed()
