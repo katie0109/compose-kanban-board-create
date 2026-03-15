@@ -1,18 +1,11 @@
-package woowacourse.kanban.board.ui.taskForm
+package woowacourse.kanban.board.ui.taskCardForm
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -22,11 +15,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.design.ColorPalette
 import woowacourse.kanban.board.design.Font
 
 
@@ -51,19 +41,6 @@ fun TitleInputSection(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun TitleInputPreview() {
-    MaterialTheme {
-        var title: String by remember { mutableStateOf("") }
-        TitleInputSection(
-            title = title,
-            onTitleChange = { title = it },
-            onErrorChange = {},
-        )
-    }
-}
-
 @Composable
 private fun TitleInputField(
     title: String,
@@ -72,6 +49,7 @@ private fun TitleInputField(
 ) {
     var isEmptyError by remember { mutableStateOf(false) }
     var isFocused by remember { mutableStateOf(false) }
+    var isClicked = false
     val supportingText by remember {
         derivedStateOf {
             if(isEmptyError) "제목을 입력해주세요"
@@ -109,4 +87,17 @@ private fun TitleInputField(
         },
 
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TitleInputPreview() {
+    MaterialTheme {
+        var title: String by remember { mutableStateOf("") }
+        TitleInputSection(
+            title = title,
+            onTitleChange = { title = it },
+            onErrorChange = {},
+        )
+    }
 }

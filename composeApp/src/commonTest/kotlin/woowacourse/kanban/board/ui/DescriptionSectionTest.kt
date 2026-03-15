@@ -6,6 +6,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.Description
+import woowacourse.kanban.board.ui.taskCard.DescriptionSection
 
 @OptIn(ExperimentalTestApi::class)
 class DescriptionSectionTest {

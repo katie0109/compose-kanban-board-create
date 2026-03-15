@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui.taskForm
+package woowacourse.kanban.board.ui.taskCardForm
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

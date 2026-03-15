@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TaskCard
-import woowacourse.kanban.board.ui.TaskCardSection
+import woowacourse.kanban.board.ui.taskCard.TaskCardSection
 
 private class TaskCardProvider : PreviewParameterProvider<TaskCard> {
     override val values: Sequence<TaskCard> = sequenceOf(

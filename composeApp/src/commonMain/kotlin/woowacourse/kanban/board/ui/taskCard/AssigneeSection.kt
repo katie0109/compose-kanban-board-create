@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui
+package woowacourse.kanban.board.ui.taskCard
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

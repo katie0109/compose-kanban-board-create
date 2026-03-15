@@ -6,6 +6,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.Title
+import woowacourse.kanban.board.ui.taskCard.TitleSection
 
 @OptIn(ExperimentalTestApi::class)
 class TitleSectionTest {

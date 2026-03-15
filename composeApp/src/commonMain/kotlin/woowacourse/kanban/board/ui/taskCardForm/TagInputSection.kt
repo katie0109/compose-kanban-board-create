@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui.taskForm
+package woowacourse.kanban.board.ui.taskCardForm
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.painterResource
 import woowacourse.kanban.board.design.Font
 import java.util.regex.Pattern
 

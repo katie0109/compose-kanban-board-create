@@ -1,23 +1,19 @@
-package woowacourse.kanban.board.ui
+package woowacourse.kanban.board.ui.taskCard
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.model.Description
+import woowacourse.kanban.board.model.Title
 import woowacourse.kanban.board.design.Font
-
 @Composable
-fun DescriptionSection(description: Description) {
+fun TitleSection(title: Title) {
     Text(
-        text = description.text,
-        fontSize = Font.DESCRIPTION.size,
-        overflow = TextOverflow.Ellipsis,
-        maxLines = 2,
+        text = title.text,
+        fontSize = Font.TITLE.size,
+        overflow = TextOverflow.Ellipsis, maxLines = 1,
         modifier = Modifier.padding(8.dp),
-        color = Color.DarkGray,
     )
 }

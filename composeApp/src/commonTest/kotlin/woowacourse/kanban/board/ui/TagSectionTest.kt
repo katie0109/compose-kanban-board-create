@@ -6,6 +6,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.Tag
+import woowacourse.kanban.board.ui.taskCard.TagSection
 
 @OptIn(ExperimentalTestApi::class)
 class TagSectionTest {

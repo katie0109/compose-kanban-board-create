@@ -1,4 +1,4 @@
-﻿package woowacourse.kanban.board.ui.taskForm
+﻿package woowacourse.kanban.board.ui.taskCardForm
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed

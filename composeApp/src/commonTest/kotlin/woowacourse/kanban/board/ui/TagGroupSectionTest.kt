@@ -7,6 +7,7 @@ import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TagGroup
+import woowacourse.kanban.board.ui.taskCard.TagGroupSection
 
 @OptIn(ExperimentalTestApi::class)
 class TagGroupSectionTest {

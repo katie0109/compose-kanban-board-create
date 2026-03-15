@@ -13,6 +13,7 @@ import woowacourse.kanban.board.model.Description
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TagGroup
 import woowacourse.kanban.board.model.Title
+import woowacourse.kanban.board.ui.taskCard.TaskCardSection
 
 @OptIn(ExperimentalTestApi::class)
 class TaskCardSectionTest {
