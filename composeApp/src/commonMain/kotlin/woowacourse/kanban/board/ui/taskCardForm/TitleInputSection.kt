@@ -19,7 +19,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.design.Font
 
-
 @Composable
 fun TitleInputSection(
     title: String,
@@ -52,7 +51,7 @@ private fun TitleInputField(
     var isClicked = false
     val supportingText by remember {
         derivedStateOf {
-            if(isEmptyError) "제목을 입력해주세요"
+            if (isEmptyError) "제목을 입력해주세요"
             else ""
         }
     }
@@ -67,31 +66,31 @@ private fun TitleInputField(
                 text = "태스크 제목을 입력하세요",
                 fontSize = Font.FORMINPUT.size,
                 fontWeight = Font.FORMINPUT.weight,
-                color = Color(0xFFAAAAAA)
+                color = Color(0xFFAAAAAA),
             )
         },
         modifier = Modifier
             .fillMaxWidth()
             .onFocusChanged { focusState ->
                 isFocused = focusState.isFocused
-                if(!isFocused&&title.isEmpty()) isEmptyError = true
-                else isEmptyError= false
+                if (!isFocused && title.isEmpty()) isEmptyError = true
+                else isEmptyError = false
                 onErrorChange(isEmptyError)
             },
         supportingText = {
             Text(
                 text = supportingText,
                 fontSize = Font.FORMEXPLAIN.size,
-                fontWeight = Font.FORMEXPLAIN.weight
+                fontWeight = Font.FORMEXPLAIN.weight,
             )
         },
 
-    )
+        )
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun TitleInputPreview() {
+private fun TitleInputSectionPreview() {
     MaterialTheme {
         var title: String by remember { mutableStateOf("") }
         TitleInputSection(

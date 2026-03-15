@@ -39,43 +39,42 @@ fun ConditionInputSection() {
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-private fun ConditionInputPreview() {
-    MaterialTheme {
-        ConditionInputSection()
-    }
-}
-
-
-@Composable
-fun ConditionField() {
+private fun ConditionField() {
     var selectedCondition by remember { mutableStateOf(Condition.TODO) }
 
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Condition.entries.forEach {
             val borderColor = if (selectedCondition == it) Color(0xFF1447E6) else Color(0xFFE5E7EB)
-            val backgroundColor = if(selectedCondition == it) Color(0xFFEEF2FF) else Color(0xFFFFFFFF)
+            val backgroundColor = if (selectedCondition == it) Color(0xFFEEF2FF) else Color(0xFFFFFFFF)
             val textColor = if (selectedCondition == it) Color(0xFF1447E6) else Color(0xFF364153)
-            Box (
+            Box(
                 modifier = Modifier
                     .weight(1f)
                     .border(
                         width = 2.dp,
                         color = borderColor,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
                     )
                     .background(
-                        color = backgroundColor
+                        color = backgroundColor,
                     )
                     .clickable { selectedCondition = it }
-                    .padding(8.dp)
+                    .padding(8.dp),
             ) {
                 Text(text = it.text, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = textColor)
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ConditionInputPreview() {
+    MaterialTheme {
+        ConditionInputSection()
     }
 }

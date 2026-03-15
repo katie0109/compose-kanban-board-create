@@ -37,19 +37,6 @@ fun DescriptionInputSection(
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-private fun DescriptionInputPreview() {
-    MaterialTheme {
-        var description: String by remember { mutableStateOf("") }
-        DescriptionInputSection(
-            description = description,
-            onDescriptionChange = { description = it },
-        )
-    }
-}
-
 @Composable
 private fun DescriptionInputField(
     description: String,
@@ -65,9 +52,21 @@ private fun DescriptionInputField(
                 text = "태스크에 대한 자세한 설명을 입력하세요",
                 fontSize = Font.FORMINPUT.size,
                 fontWeight = Font.FORMINPUT.weight,
-                color = Color(0xFFAAAAAA)
+                color = Color(0xFFAAAAAA),
             )
         },
         modifier = Modifier.height(150.dp).fillMaxWidth(),
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun DescriptionInputPreview() {
+    MaterialTheme {
+        var description: String by remember { mutableStateOf("") }
+        DescriptionInputSection(
+            description = description,
+            onDescriptionChange = { description = it },
+        )
+    }
 }

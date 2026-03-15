@@ -43,29 +43,18 @@ fun TagInputSection(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun TagInputPreview() {
-    MaterialTheme {
-        TagInputSection(
-            onTagsChange = {},
-            onErrorChange = {},
-        )
-    }
-}
-
 @Composable
 private fun TagInputField(
     onTagsChange: (String) -> Unit,
     onErrorChange: (Boolean) -> Unit,
 ) {
     var tags: String by remember { mutableStateOf("") }
-    val tagsPattern = remember{
+    val tagsPattern = remember {
         Pattern.compile("^[^,]+(\\s*,\\s*[^,]+)*\$")
     }
 
     val isFormError by remember {
-        derivedStateOf{
+        derivedStateOf {
             tags.isNotEmpty() && !tagsPattern.matcher(tags).matches()
         }
     }
@@ -73,7 +62,7 @@ private fun TagInputField(
     val isCountError by remember {
         derivedStateOf {
             val splitTags = tags.split(",")
-            tags.isNotEmpty()&& (splitTags.size > 5 || !splitTags.all { it.trim().length in 1..5})
+            tags.isNotEmpty() && (splitTags.size > 5 || !splitTags.all { it.trim().length in 1..5 })
         }
     }
 
@@ -98,29 +87,40 @@ private fun TagInputField(
             onTagsChange(it)
         },
         textStyle = TextStyle(color = if (isFormError || isCountError) MaterialTheme.colorScheme.error else Color.Black),
-        isError = isFormError||isCountError,
+        isError = isFormError || isCountError,
         placeholder = {
             Text(
                 text = "태그를 쉼표로 구분하여 입력하세요(예: 버그, 긴급)",
                 fontSize = Font.FORMINPUT.size,
                 fontWeight = Font.FORMINPUT.weight,
-                color = Color(0xFFAAAAAA)
+                color = Color(0xFFAAAAAA),
             )
         },
         supportingText = {
             Text(
                 text = supportingText,
                 fontSize = Font.FORMEXPLAIN.size,
-                fontWeight = Font.FORMEXPLAIN.weight
+                fontWeight = Font.FORMEXPLAIN.weight,
             )
         },
         trailingIcon = {
-            if(isFormError||isCountError) {
+            if (isFormError || isCountError) {
                 Icon(
-                    Icons.Filled.Error, "error", tint = MaterialTheme.colorScheme.error
+                    Icons.Filled.Error, "error", tint = MaterialTheme.colorScheme.error,
                 )
             }
         },
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TagInputPreview() {
+    MaterialTheme {
+        TagInputSection(
+            onTagsChange = {},
+            onErrorChange = {},
+        )
+    }
 }

@@ -18,7 +18,7 @@ fun TaskCreateSection() {
     val assignees = remember {
         listOf(
             Assignee("다이노"),
-            Assignee("페임스")
+            Assignee("페임스"),
         )
     }
     var title by remember { mutableStateOf("") }
@@ -32,7 +32,7 @@ fun TaskCreateSection() {
     Column {
         TaskCreateHeaderSection()
         Column(
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(24.dp),
         ) {
             TitleInputSection(
                 title = title,
@@ -61,7 +61,7 @@ fun TaskCreateSection() {
 
 @Preview(showBackground = true)
 @Composable
-fun TaskCreateSectionPreview() {
+private fun TaskCreateSectionPreview() {
     MaterialTheme {
         TaskCreateSection()
     }

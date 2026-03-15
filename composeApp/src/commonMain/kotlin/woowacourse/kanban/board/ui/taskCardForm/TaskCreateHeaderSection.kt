@@ -20,13 +20,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.design.Font
 
-@Preview(showBackground = true)
 @Composable
 fun TaskCreateHeaderSection() {
     Row(
         modifier = Modifier.fillMaxWidth().padding(12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = "새 태스크 생성",
@@ -38,7 +37,7 @@ fun TaskCreateHeaderSection() {
             modifier = Modifier.size(20.dp),
             onClick = {},
 
-        ) {
+            ) {
             Icon(
                 imageVector = Icons.Filled.Close,
                 contentDescription = "닫기",
@@ -47,4 +46,10 @@ fun TaskCreateHeaderSection() {
         }
     }
     HorizontalDivider()
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TaskCreateHeaderSectionPreview() {
+    TaskCreateHeaderSection()
 }

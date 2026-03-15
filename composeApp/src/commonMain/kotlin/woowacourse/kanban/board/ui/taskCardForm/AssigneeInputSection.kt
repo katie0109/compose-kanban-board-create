@@ -39,7 +39,44 @@ fun AssigneeInputSection(
         AssigneeField(
             assignees = assignees,
             selected = selected,
-            onSelect = onSelect
+            onSelect = onSelect,
+        )
+    }
+}
+
+@Composable
+private fun AssigneeField(
+    assignees: List<Assignee>,
+    selected: Assignee,
+    onSelect: (Assignee) -> Unit,
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        assignees.forEach { assignee ->
+            val isSelected = assignee == selected
+            val borderColor = if (isSelected) Color(0xFF615FFF) else Color(0xFFE5E7EB)
+            val backgroundColor = if (isSelected) Color(0xFFEEF2FF) else Color(0xFFFFFFFF)
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .border(
+                        width = 2.dp,
+                        color = borderColor,
+                        shape = RoundedCornerShape(10.dp),
+                    )
+                    .background(
+                        color = backgroundColor,
+                    )
+                    .clickable { onSelect(assignee) }
+                    .padding(4.dp),
+            ) {
+                AssigneeSection(assignee)
+            }
+        }
+        Spacer(
+            modifier = Modifier.weight(1f),
         )
     }
 }
@@ -49,50 +86,13 @@ fun AssigneeInputSection(
 private fun AssigneeInputSectionPreview() {
     val assignees = listOf(
         Assignee("다이노"),
-        Assignee("페임스")
+        Assignee("페임스"),
     )
     MaterialTheme {
         AssigneeInputSection(
             assignees = assignees,
             selected = assignees.first(),
             onSelect = {},
-        )
-    }
-}
-
-@Composable
-fun AssigneeField(
-    assignees: List<Assignee>,
-    selected: Assignee,
-    onSelect: (Assignee) -> Unit,
-) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        assignees.forEach { assignee ->
-            val isSelected = assignee == selected
-            val borderColor = if (isSelected) Color(0xFF615FFF) else Color(0xFFE5E7EB)
-            val backgroundColor = if(isSelected) Color(0xFFEEF2FF) else Color(0xFFFFFFFF)
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .border(
-                        width = 2.dp,
-                        color = borderColor,
-                        shape = RoundedCornerShape(10.dp)
-                    )
-                    .background(
-                        color = backgroundColor
-                    )
-                    .clickable { onSelect(assignee) }
-                    .padding(4.dp)
-            ) {
-                AssigneeSection(assignee)
-            }
-        }
-        Spacer(
-            modifier = Modifier.weight(1f)
         )
     }
 }

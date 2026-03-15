@@ -17,12 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-@Preview(showBackground = true)
-@Composable
-private fun ButtonFieldDisabledPreview() {
-    TaskCreateBottomSection()
-}
-
 @Composable
 fun TaskCreateBottomSection(
     isCreateEnabled: Boolean = true,
@@ -40,8 +34,8 @@ fun TaskCreateBottomSection(
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
-                    contentColor = Color.Black
-                )
+                    contentColor = Color.Black,
+                ),
             ) {
                 Text(
                     text = "취소",
@@ -53,11 +47,17 @@ fun TaskCreateBottomSection(
                 enabled = isCreateEnabled,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF4F39F6)
-                )
+                    containerColor = Color(0xFF4F39F6),
+                ),
             ) {
                 Text("생성")
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TaskCreateBottomSectionPreview() {
+    TaskCreateBottomSection()
 }
