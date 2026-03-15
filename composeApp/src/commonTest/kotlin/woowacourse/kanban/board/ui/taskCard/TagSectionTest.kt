@@ -1,12 +1,12 @@
-package woowacourse.kanban.board.ui
+package woowacourse.kanban.board.ui.taskCard
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.Tag
-import woowacourse.kanban.board.ui.taskCard.TagSection
 
 @OptIn(ExperimentalTestApi::class)
 class TagSectionTest {
@@ -26,7 +26,7 @@ class TagSectionTest {
         val tags = listOf(Tag("1"), Tag("2"), Tag("3"))
 
         setContent {
-            androidx.compose.foundation.layout.Row {
+            Row {
                 tags.forEach { tag ->
                     TagSection(tag = tag)
                 }

@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui
+package woowacourse.kanban.board.ui.taskCard
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
@@ -7,7 +7,6 @@ import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TagGroup
-import woowacourse.kanban.board.ui.taskCard.TagGroupSection
 
 @OptIn(ExperimentalTestApi::class)
 class TagGroupSectionTest {

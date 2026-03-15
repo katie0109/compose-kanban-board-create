@@ -1,4 +1,4 @@
-package woowacourse.kanban.board.ui
+package woowacourse.kanban.board.ui.taskCard
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
@@ -6,7 +6,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import woowacourse.kanban.board.model.Description
-import woowacourse.kanban.board.ui.taskCard.DescriptionSection
 
 @OptIn(ExperimentalTestApi::class)
 class DescriptionSectionTest {
