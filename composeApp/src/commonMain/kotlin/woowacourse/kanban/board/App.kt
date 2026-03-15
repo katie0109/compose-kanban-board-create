@@ -18,6 +18,27 @@ import woowacourse.kanban.board.model.TaskCard
 import woowacourse.kanban.board.model.Title
 import woowacourse.kanban.board.ui.taskCard.TaskCardSection
 
+@Composable
+fun App(taskCards: List<TaskCard>) {
+    FlowRow(
+        horizontalArrangement = Arrangement.spacedBy(15.dp),
+        verticalArrangement = Arrangement.spacedBy(15.dp),
+        modifier = Modifier.padding(20.dp),
+    ) {
+        taskCards.forEach { taskCard ->
+            TaskCardSection(taskCard = taskCard)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AppPreview() {
+    MaterialTheme {
+        App(taskCards = TaskCardProvider().values.toList())
+    }
+}
+
 private class TaskCardProvider : PreviewParameterProvider<TaskCard> {
     override val values: Sequence<TaskCard> = sequenceOf(
         TaskCard(
@@ -25,7 +46,7 @@ private class TaskCardProvider : PreviewParameterProvider<TaskCard> {
             description = Description("세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다."),
             tags = TagGroup(listOf(Tag("컴포넌트"), Tag("성능"))),
             assignee = Assignee("다이노"),
-            ),
+        ),
         TaskCard(
             title = Title("LazyColumn 컴포넌트 구현"),
             tags = TagGroup(listOf(Tag("컴포넌트"), Tag("성능"))),
@@ -48,29 +69,3 @@ private class TaskCardProvider : PreviewParameterProvider<TaskCard> {
         ),
     )
 }
-
-@Preview(showBackground = true)
-@Composable
-fun TaskCardPreview(
-    @PreviewParameter(TaskCardProvider::class) taskCard: TaskCard,
-) {
-    MaterialTheme {
-        TaskCardSection(taskCard = taskCard)
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun App() {
-    FlowRow(
-        horizontalArrangement = Arrangement.spacedBy(15.dp),
-        verticalArrangement = Arrangement.spacedBy(15.dp),
-        modifier = Modifier.padding(20.dp),
-    ) {
-        TaskCardProvider().values.forEach { taskCard ->
-            TaskCardSection(taskCard = taskCard)
-        }
-    }
-}
-
-
