@@ -13,21 +13,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.design.Font
-import woowacourse.kanban.board.model.Condition
+import woowacourse.kanban.board.model.TaskStatus
 
 
 @Composable
-fun ConditionInputSection() {
+fun TaskStatusInputSection(
+    selectedTaskStatus: TaskStatus,
+    onStatusChange: (TaskStatus) -> Unit,
+) {
     Column {
         Text(
             text = "상태 *",
@@ -35,22 +34,26 @@ fun ConditionInputSection() {
             fontWeight = Font.FORMTITLE.weight,
             modifier = Modifier.padding(8.dp).fillMaxWidth(),
         )
-        ConditionField()
+        TaskStatusField(
+            selectedTaskStatus = selectedTaskStatus,
+            onSelect = onStatusChange,
+        )
     }
 }
 
 @Composable
-private fun ConditionField() {
-    var selectedCondition by remember { mutableStateOf(Condition.TODO) }
-
+private fun TaskStatusField(
+    selectedTaskStatus: TaskStatus,
+    onSelect: (TaskStatus) -> Unit,
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Condition.entries.forEach {
-            val borderColor = if (selectedCondition == it) Color(0xFF1447E6) else Color(0xFFE5E7EB)
-            val backgroundColor = if (selectedCondition == it) Color(0xFFEEF2FF) else Color(0xFFFFFFFF)
-            val textColor = if (selectedCondition == it) Color(0xFF1447E6) else Color(0xFF364153)
+        TaskStatus.entries.forEach {
+            val borderColor = if (selectedTaskStatus == it) Color(0xFF1447E6) else Color(0xFFE5E7EB)
+            val backgroundColor = if (selectedTaskStatus == it) Color(0xFFEEF2FF) else Color(0xFFFFFFFF)
+            val textColor = if (selectedTaskStatus == it) Color(0xFF1447E6) else Color(0xFF364153)
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -62,7 +65,7 @@ private fun ConditionField() {
                     .background(
                         color = backgroundColor,
                     )
-                    .clickable { selectedCondition = it }
+                    .clickable { onSelect(it) }
                     .padding(8.dp),
             ) {
                 Text(text = it.text, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = textColor)
@@ -73,8 +76,11 @@ private fun ConditionField() {
 
 @Preview(showBackground = true)
 @Composable
-private fun ConditionInputPreview() {
+private fun TaskStatusInputPreview() {
     MaterialTheme {
-        ConditionInputSection()
+        TaskStatusInputSection(
+            selectedTaskStatus = TaskStatus.TODO,
+            onStatusChange = {},
+        )
     }
 }

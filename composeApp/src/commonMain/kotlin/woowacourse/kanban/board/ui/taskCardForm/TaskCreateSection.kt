@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.Assignee
+import woowacourse.kanban.board.model.TaskStatus
 
 @Composable
 fun TaskCreateSection() {
@@ -27,7 +28,9 @@ fun TaskCreateSection() {
     var isTagError by remember { mutableStateOf(false) }
     var description by remember { mutableStateOf("") }
     var assignee by remember { mutableStateOf(assignees.first()) }
+    var selectedTaskStatus by remember { mutableStateOf(TaskStatus.TODO) }
     val isCreateEnabled = title.isNotBlank() && !isTitleError && !isTagError
+
 
     Column {
         TaskCreateHeaderSection()
@@ -47,7 +50,10 @@ fun TaskCreateSection() {
                 onTagsChange = { tags = it },
                 onErrorChange = { isTagError = it },
             )
-            ConditionInputSection()
+            TaskStatusInputSection(
+                selectedTaskStatus = selectedTaskStatus,
+                onStatusChange = {selectedTaskStatus = it}
+            )
             AssigneeInputSection(
                 assignees = assignees,
                 selected = assignee,
