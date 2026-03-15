@@ -5,9 +5,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import woowacourse.kanban.board.model.Title
 import woowacourse.kanban.board.design.Font
+import woowacourse.kanban.board.model.Title
+
 @Composable
 fun TitleSection(title: Title) {
     Text(
@@ -16,4 +18,10 @@ fun TitleSection(title: Title) {
         overflow = TextOverflow.Ellipsis, maxLines = 1,
         modifier = Modifier.padding(8.dp),
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TitleSectionPreview() {
+    TitleSection(Title("LazyColumn 컴포넌트 구현"))
 }

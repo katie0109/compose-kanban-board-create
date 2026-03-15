@@ -14,14 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.sun.beans.introspect.PropertyInfo
-import jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle
 import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.Description
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TagGroup
 import woowacourse.kanban.board.model.TaskCard
 import woowacourse.kanban.board.model.Title
+
 @Composable
 fun TaskCardSection(taskCard: TaskCard) {
     Box(
@@ -46,13 +45,13 @@ fun TaskCardSection(taskCard: TaskCard) {
 
 @Preview(showBackground = true)
 @Composable
-fun TaskCardSectionPreview(){
+private fun TaskCardSectionPreview() {
     TaskCardSection(
         taskCard = TaskCard(
             title = Title("LazyColumn 컴포넌트 구현"),
             description = Description("세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다."),
             tags = TagGroup(listOf(Tag("컴포넌트"), Tag("성능"))),
             assignee = Assignee("다이노"),
-        )
+        ),
     )
 }
