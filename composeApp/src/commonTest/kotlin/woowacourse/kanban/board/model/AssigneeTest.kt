@@ -6,9 +6,9 @@ import kotlin.test.assertFailsWith
 class AssigneeTest {
     @Test
     fun `담당자는 빈 텍스트일 수 없다`() {
-        assertFailsWith<IllegalArgumentException> {
-            Assignee(" ")
-        }
+        assertFailsWith<IllegalArgumentException> { Assignee(" ") }
+        assertFailsWith<IllegalArgumentException> { Assignee("\t") }
+        assertFailsWith<IllegalArgumentException> { Assignee("\n") }
     }
 
     @Test
