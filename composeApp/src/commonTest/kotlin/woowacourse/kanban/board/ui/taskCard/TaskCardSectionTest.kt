@@ -12,24 +12,23 @@ import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.Description
 import woowacourse.kanban.board.model.Tag
 import woowacourse.kanban.board.model.TagGroup
+import woowacourse.kanban.board.model.TaskCard
 import woowacourse.kanban.board.model.Title
 
 @OptIn(ExperimentalTestApi::class)
 class TaskCardSectionTest {
+
     @Test
     fun `태스크 카드는 제목을 표시한다`() = runComposeUiTest {
-        val title = Title("제목입니다")
-        val description = Description("설명입니다")
-        val tagGroup = TagGroup(emptyList())
-        val assignee = Assignee("다이노")
+        val taskCard = TaskCard(
+            title = Title("제목입니다"),
+            description = Description("설명입니다"),
+            tags = TagGroup(emptyList()),
+            assignee = Assignee("다이노")
+        )
 
         setContent {
-            TaskCardSection(
-                title = title,
-                description = description,
-                tagGroup = tagGroup,
-                assignee = assignee,
-            )
+            TaskCardSection(taskCard = taskCard)
         }
 
         onNodeWithText("제목입니다").assertIsDisplayed()
@@ -37,18 +36,15 @@ class TaskCardSectionTest {
 
     @Test
     fun `태스크 카드는 담당자를 표시한다`() = runComposeUiTest {
-        val title = Title("제목입니다")
-        val description = Description("설명입니다")
-        val tagGroup = TagGroup(emptyList())
-        val assignee = Assignee("다이노")
+        val taskCard = TaskCard(
+            title = Title("제목입니다"),
+            description = Description("설명입니다"),
+            tags = TagGroup(emptyList()),
+            assignee = Assignee("다이노")
+        )
 
         setContent {
-            TaskCardSection(
-                title = title,
-                description = description,
-                tagGroup = tagGroup,
-                assignee = assignee,
-            )
+            TaskCardSection(taskCard = taskCard)
         }
 
         onNodeWithText("다이노").assertIsDisplayed()
@@ -57,18 +53,15 @@ class TaskCardSectionTest {
 
     @Test
     fun `태스크 카드는 비어있지 않은 설명을 표시한다`() = runComposeUiTest {
-        val title = Title("제목입니다")
-        val description = Description("설명입니다")
-        val tagGroup = TagGroup(emptyList())
-        val assignee = Assignee("다이노")
+        val taskCard = TaskCard(
+            title = Title("제목입니다"),
+            description = Description("설명입니다"),
+            tags = TagGroup(emptyList()),
+            assignee = Assignee("다이노")
+        )
 
         setContent {
-            TaskCardSection(
-                title = title,
-                description = description,
-                tagGroup = tagGroup,
-                assignee = assignee,
-            )
+            TaskCardSection(taskCard = taskCard)
         }
 
         onNodeWithText("설명입니다").assertIsDisplayed()
@@ -76,18 +69,15 @@ class TaskCardSectionTest {
 
     @Test
     fun `태스크 카드는 비어있는 설명을 숨긴다`() = runComposeUiTest {
-        val title = Title("제목입니다")
-        val description = Description(" ")
-        val tagGroup = TagGroup(emptyList())
-        val assignee = Assignee("다이노")
+        val taskCard = TaskCard(
+            title = Title("제목입니다"),
+            description = Description(" "),
+            tags = TagGroup(emptyList()),
+            assignee = Assignee("다이노")
+        )
 
         setContent {
-            TaskCardSection(
-                title = title,
-                description = description,
-                tagGroup = tagGroup,
-                assignee = assignee,
-            )
+            TaskCardSection(taskCard = taskCard)
         }
 
         onNodeWithText("제목입니다").assertIsDisplayed()
@@ -97,18 +87,15 @@ class TaskCardSectionTest {
 
     @Test
     fun `태스크 카드는 태그를 표시한다`() = runComposeUiTest {
-        val title = Title("제목입니다")
-        val description = Description("설명입니다")
-        val tagGroup = TagGroup(listOf(Tag("태그1"), Tag("태그2")))
-        val assignee = Assignee("다이노")
+        val taskCard = TaskCard(
+            title = Title("제목입니다"),
+            description = Description("설명입니다"),
+            tags = TagGroup(listOf(Tag("태그1"), Tag("태그2"))),
+            assignee = Assignee("다이노")
+        )
 
         setContent {
-            TaskCardSection(
-                title = title,
-                description = description,
-                tagGroup = tagGroup,
-                assignee = assignee,
-            )
+            TaskCardSection(taskCard = taskCard)
         }
 
         onNodeWithText("태그1").assertIsDisplayed()
@@ -117,18 +104,15 @@ class TaskCardSectionTest {
 
     @Test
     fun `태스크 카드는 제목, 설명, 태그, 담당자를 모두 표시한다`() = runComposeUiTest {
-        val title = Title("제목입니다")
-        val description = Description("설명입니다")
-        val tagGroup = TagGroup(listOf(Tag("태그1"), Tag("태그2")))
-        val assignee = Assignee("다이노")
+        val taskCard = TaskCard(
+            title = Title("제목입니다"),
+            description = Description("설명입니다"),
+            tags = TagGroup(listOf(Tag("태그1"), Tag("태그2"))),
+            assignee = Assignee("다이노")
+        )
 
         setContent {
-            TaskCardSection(
-                title = title,
-                description = description,
-                tagGroup = tagGroup,
-                assignee = assignee,
-            )
+            TaskCardSection(taskCard = taskCard)
         }
 
         onNodeWithText("제목입니다").assertIsDisplayed()
