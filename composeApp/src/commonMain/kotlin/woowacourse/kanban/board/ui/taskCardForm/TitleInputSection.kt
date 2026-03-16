@@ -48,7 +48,6 @@ private fun TitleInputField(
 ) {
     var isEmptyError by remember { mutableStateOf(false) }
     var isFocused by remember { mutableStateOf(false) }
-    var isClicked = false
     val supportingText by remember {
         derivedStateOf {
             if (isEmptyError) "제목을 입력해주세요"
@@ -59,6 +58,8 @@ private fun TitleInputField(
         value = title,
         onValueChange = {
             onTitleChange(it)
+            isEmptyError = it.isEmpty()
+            onErrorChange(isEmptyError)
         },
         isError = isEmptyError,
         placeholder = {
@@ -73,19 +74,21 @@ private fun TitleInputField(
             .fillMaxWidth()
             .onFocusChanged { focusState ->
                 isFocused = focusState.isFocused
-                if (!isFocused && title.isEmpty()) isEmptyError = true
-                else isEmptyError = false
+                if (isFocused && title.isEmpty()) isEmptyError = true else isEmptyError = false
                 onErrorChange(isEmptyError)
             },
-        supportingText = {
-            Text(
-                text = supportingText,
-                fontSize = Font.FORMEXPLAIN.size,
-                fontWeight = Font.FORMEXPLAIN.weight,
-            )
-        },
+        supportingText = { TitleSupportingText(supportingText) },
 
         )
+}
+
+@Composable
+private fun TitleSupportingText(text: String) {
+    Text(
+        text = text,
+        fontSize = Font.FORMEXPLAIN.size,
+        fontWeight = Font.FORMEXPLAIN.weight,
+    )
 }
 
 @Preview(showBackground = true)
