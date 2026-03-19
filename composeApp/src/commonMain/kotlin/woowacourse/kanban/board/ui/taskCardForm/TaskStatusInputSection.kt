@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,19 +25,19 @@ import woowacourse.kanban.board.model.TaskStatus
 fun TaskStatusInputSection(
     selectedTaskStatus: TaskStatus,
     onStatusChange: (TaskStatus) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    Column {
-        Text(
-            text = "상태 *",
-            fontSize = Font.FORMTITLE.size,
-            fontWeight = Font.FORMTITLE.weight,
-            modifier = Modifier.padding(8.dp).fillMaxWidth(),
-        )
-        TaskStatusField(
-            selectedTaskStatus = selectedTaskStatus,
-            onSelect = onStatusChange,
-        )
-    }
+    Text(
+        text = "상태 *",
+        fontSize = Font.FORMTITLE.size,
+        fontWeight = Font.FORMTITLE.weight,
+        modifier = Modifier.padding(8.dp).fillMaxWidth(),
+    )
+    TaskStatusField(
+        selectedTaskStatus = selectedTaskStatus,
+        onSelect = onStatusChange,
+    )
+
 }
 
 @Composable

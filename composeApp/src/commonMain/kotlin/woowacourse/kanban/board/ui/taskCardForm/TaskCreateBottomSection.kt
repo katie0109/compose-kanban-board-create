@@ -19,10 +19,13 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun TaskCreateBottomSection(
-    isCreateEnabled: Boolean = true,
+    modifier: Modifier = Modifier,
+    canSubmit: Boolean = true,
+    onCreateClick: () -> Unit = {},
+    onCancelClick: () -> Unit = {},
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
     ) {
         HorizontalDivider()
         Row(
@@ -30,7 +33,7 @@ fun TaskCreateBottomSection(
             horizontalArrangement = Arrangement.End,
         ) {
             Button(
-                onClick = {},
+                onClick = onCancelClick,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
@@ -43,8 +46,8 @@ fun TaskCreateBottomSection(
                 )
             }
             Button(
-                onClick = {},
-                enabled = isCreateEnabled,
+                onClick = onCreateClick,
+                enabled = canSubmit,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF4F39F6),
