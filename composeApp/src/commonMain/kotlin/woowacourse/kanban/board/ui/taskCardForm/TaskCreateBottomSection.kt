@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun TaskCreateBottomSection(
     isCreateEnabled: Boolean = true,
+    onCreateClick: () -> Unit = {},
+    onCancelClick: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -30,7 +32,7 @@ fun TaskCreateBottomSection(
             horizontalArrangement = Arrangement.End,
         ) {
             Button(
-                onClick = {},
+                onClick = onCancelClick,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
@@ -43,7 +45,7 @@ fun TaskCreateBottomSection(
                 )
             }
             Button(
-                onClick = {},
+                onClick = onCreateClick,
                 enabled = isCreateEnabled,
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(

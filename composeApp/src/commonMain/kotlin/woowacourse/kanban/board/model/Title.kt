@@ -3,6 +3,13 @@ package woowacourse.kanban.board.model
 @JvmInline
 value class Title(val text: String) {
     init {
-        require(text.isNotBlank()) {"[ERROR] 제목은 빈 값일 수 없습니다." }
+        if (text.isBlank()) {
+            throw ValidationException(ValidationErrorCode.TITLE_REQUIRED)
+        }
+    }
+
+    companion object {
+        fun validate(input: String): String? =
+            if (input.isBlank()) ValidationMessages.TITLE_REQUIRED else null
     }
 }

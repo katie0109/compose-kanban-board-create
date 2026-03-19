@@ -16,6 +16,7 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import woowacourse.kanban.board.model.ValidationMessages
 
 @OptIn(ExperimentalTestApi::class)
 class TitleInputSectionTest {
@@ -28,7 +29,7 @@ class TitleInputSectionTest {
                 TitleInputSection(
                     title = title,
                     onTitleChange = { title = it },
-                    onErrorChange = {},
+                    errorMessage = if (title.isBlank()) ValidationMessages.TITLE_REQUIRED else null,
                 )
             }
         }
@@ -50,7 +51,7 @@ class TitleInputSectionTest {
                     TitleInputSection(
                         title = title,
                         onTitleChange = { title = it },
-                        onErrorChange = {},
+                        errorMessage = if (title.isBlank()) ValidationMessages.TITLE_REQUIRED else null,
                     )
                     Button(onClick = {}) {
                         Text("다른 곳")
@@ -62,7 +63,7 @@ class TitleInputSectionTest {
         onNode(hasSetTextAction()).performClick()
         onNodeWithText("다른 곳").performClick()
 
-        onNodeWithText("제목을 입력해주세요", useUnmergedTree = true).assertIsDisplayed()
+        onNodeWithText("제목을 입력해 주세요.", useUnmergedTree = true).assertIsDisplayed()
     }
 
     @Test
@@ -75,7 +76,7 @@ class TitleInputSectionTest {
                     TitleInputSection(
                         title = title,
                         onTitleChange = { title = it },
-                        onErrorChange = {},
+                        errorMessage = if (title.isBlank()) ValidationMessages.TITLE_REQUIRED else null,
                     )
                     Button(onClick = {}) {
                         Text("다른 곳")
@@ -87,6 +88,6 @@ class TitleInputSectionTest {
         onNode(hasSetTextAction()).performTextInput("제목")
         onNodeWithText("다른 곳").performClick()
 
-        onNodeWithText("제목을 입력해주세요", useUnmergedTree = true).assertDoesNotExist()
+        onNodeWithText("제목을 입력해 주세요.", useUnmergedTree = true).assertDoesNotExist()
     }
 }
