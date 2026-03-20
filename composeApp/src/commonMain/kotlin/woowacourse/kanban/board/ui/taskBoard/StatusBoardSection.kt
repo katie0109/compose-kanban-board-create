@@ -6,12 +6,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -28,14 +29,23 @@ import woowacourse.kanban.board.ui.taskCard.TaskCardSection
 @Composable
 fun StatusBoardSection(
     status: TaskStatus,
-    statusCount: Int
+    statusCount: Int,
+    tasks: List<TaskCard>,
+    modifier: Modifier = Modifier,
 ){
     Column(
-        modifier = Modifier
-            .padding(24.dp)
+        modifier = modifier
+            .clip(RoundedCornerShape(12.dp))
+            .border(1.dp, statusToBorderColor(status), RoundedCornerShape(12.dp))
+            .background(statusToContentColor(status))
+            .heightIn(min = 520.dp)
     ){
         StatusBoardHeader(status = status, statusCount = statusCount)
-        StatusBoardContent(status = status, tasks = emptyList())
+        StatusBoardContent(
+            status = status,
+            tasks = tasks,
+            modifier = Modifier.weight(1f, fill = true),
+        )
     }
 }
 
@@ -77,16 +87,18 @@ private fun StatusBoardHeader(
 }
 
 @Composable
-private fun StatusBoardContent(status:TaskStatus, tasks: List<TaskCard> = emptyList()){
+private fun StatusBoardContent(
+    status: TaskStatus,
+    tasks: List<TaskCard>,
+    modifier: Modifier = Modifier,
+){
     Column(
-        modifier = Modifier
+        modifier = modifier
             .background(color = statusToContentColor(status))
-            .fillMaxSize()
-            .border(
-            width = 1.dp,
-            color = statusToBorderColor(status)
-            )
-            .padding(8.dp),
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ){
         tasks.forEach { task ->
             TaskCardSection(taskCard = task)
@@ -100,10 +112,22 @@ private fun StatusBoardContent(status:TaskStatus, tasks: List<TaskCard> = emptyL
 private fun StatusBoardSectionPreview(){
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(24.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ){
-        StatusBoardSection(TaskStatus.TODO,2)
-        StatusBoardSection(TaskStatus.INPROGRESS,1)
-        StatusBoardSection(TaskStatus.DONE,3)
+        StatusBoardSection(
+            status = TaskStatus.TODO,
+            statusCount = 2,
+            tasks = emptyList(),
+        )
+        StatusBoardSection(
+            status = TaskStatus.INPROGRESS,
+            statusCount = 1,
+            tasks = emptyList(),
+        )
+        StatusBoardSection(
+            status = TaskStatus.DONE,
+            statusCount = 3,
+            tasks = emptyList(),
+        )
     }
 }
