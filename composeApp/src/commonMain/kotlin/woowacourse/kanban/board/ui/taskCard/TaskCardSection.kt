@@ -25,11 +25,11 @@ import woowacourse.kanban.board.model.Title
 @Composable
 fun TaskCardSection(taskCard: TaskCard) {
     Box(
-        modifier = Modifier.border(
+        modifier = Modifier.background(Color.White)
+            .border(
             border = BorderStroke(1.dp, Color.LightGray),
             shape = RoundedCornerShape(8.dp),
-        ).width(250.dp).padding(8.dp)
-            .background(Color.White),
+        ).width(250.dp).padding(8.dp),
     ) {
         Column {
             TitleSection(title = taskCard.title)
