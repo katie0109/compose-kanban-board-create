@@ -5,10 +5,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.Description
 import woowacourse.kanban.board.model.Tag
@@ -16,11 +23,47 @@ import woowacourse.kanban.board.model.TagGroup
 import woowacourse.kanban.board.model.TaskCard
 import woowacourse.kanban.board.model.TaskStatus
 import woowacourse.kanban.board.model.Title
+import woowacourse.kanban.board.ui.taskCardForm.TaskCreateSection
 
 @Composable
 fun TaskBoardSection(
     tasks: List<TaskCard>,
+    modifier: Modifier = Modifier,
+) {
+    val taskCards = remember(tasks) { tasks.toMutableStateList() }
+    val showTaskCreateDialog = remember { mutableStateOf(false) }
+
+    TaskBoardContentSection(
+        tasks = taskCards,
+        onCreateTaskClick = { showTaskCreateDialog.value = true },
+        modifier = modifier,
+    )
+
+    if (showTaskCreateDialog.value) {
+        Dialog(
+            onDismissRequest = { showTaskCreateDialog.value = false },
+            properties = DialogProperties(usePlatformDefaultWidth = false),
+        ) {
+            Surface(
+                modifier = Modifier.width(860.dp),
+            ) {
+                TaskCreateSection(
+                    onTaskCreate = { createdTask ->
+                        taskCards.add(createdTask)
+                        showTaskCreateDialog.value = false
+                    },
+                    onCancel = { showTaskCreateDialog.value = false },
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun TaskBoardContentSection(
+    tasks: List<TaskCard>,
     onCreateTaskClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val todoTasks = tasks.filter { it.status == TaskStatus.TODO }
     val inProgressTasks = tasks.filter { it.status == TaskStatus.INPROGRESS }
@@ -30,7 +73,7 @@ fun TaskBoardSection(
     val totalCount = tasks.size
     val ratio = calculateProgress(doneCount, totalCount)
 
-    Column {
+    Column(modifier = modifier) {
         TaskBoardHeader(onCreateTaskClick = onCreateTaskClick)
         TaskBoardProgressSection(
             doneCount = doneCount,
@@ -65,12 +108,11 @@ fun TaskBoardSection(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 950, heightDp = 1200)
 @Composable
 private fun TaskBoardSectionPreview() {
     TaskBoardSection(
         tasks = previewTasks,
-        onCreateTaskClick = {},
     )
 }
 
