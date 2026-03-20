@@ -28,7 +28,8 @@ fun TaskCardSection(taskCard: TaskCard) {
         modifier = Modifier.border(
             border = BorderStroke(1.dp, Color.LightGray),
             shape = RoundedCornerShape(8.dp),
-        ).width(250.dp).padding(8.dp),
+        ).width(250.dp).padding(8.dp)
+            .background(Color.White),
     ) {
         Column {
             TitleSection(title = taskCard.title)
