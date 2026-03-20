@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,12 +16,15 @@ import androidx.compose.ui.unit.dp
 fun TaskBoardProgressSection(
     doneCount: Int,
     totalCount: Int,
-    ratio: Double,
+    ratio: Float,
     modifier: Modifier = Modifier,
 ){
-    Column{
+    Column(
+        modifier = modifier
+            .padding(horizontal = 16.dp)
+    ){
         ProgressText(doneCount, totalCount, ratio)
-        ProgressBar(ratio.toFloat())
+        ProgressBar(ratio)
     }
 }
 
@@ -47,10 +49,11 @@ private fun ProgressBar(
 private fun ProgressText(
     doneCount: Int,
     totalCount: Int,
-    ratio: Double,
+    ratio: Float,
 ){
+    val percent = (ratio * 100).toInt()
     Text(
-        text = "완료율: ${ratio*100}% ($doneCount/$totalCount)",
+        text = "완료율: ${percent}% ($doneCount/$totalCount)",
         modifier = Modifier.padding(top = 4.dp),
         color =  Color(0xFF6A7282)
     )
@@ -59,7 +62,7 @@ private fun ProgressText(
 @Preview(showBackground = true)
 @Composable
 private fun TaskBoardProgressSectionPreview() {
-    TaskBoardProgressSection(3,6,0.5)
+    TaskBoardProgressSection(3,6,0.5f)
 }
 
 
