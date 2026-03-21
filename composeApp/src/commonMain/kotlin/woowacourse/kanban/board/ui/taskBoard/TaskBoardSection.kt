@@ -6,16 +6,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import kotlinx.coroutines.launch
 import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.Description
 import woowacourse.kanban.board.model.Tag
@@ -32,12 +36,19 @@ fun TaskBoardSection(
 ) {
     val taskCards = remember(tasks) { tasks.toMutableStateList() }
     val showTaskCreateDialog = remember { mutableStateOf(false) }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
-    TaskBoardContentSection(
-        tasks = taskCards,
-        onCreateTaskClick = { showTaskCreateDialog.value = true },
+    Scaffold(
         modifier = modifier,
-    )
+        snackbarHost = { TaskBoardSnackbar(snackbarHostState = snackbarHostState) },
+    ) { innerPadding ->
+        TaskBoardContentSection(
+            tasks = taskCards,
+            onCreateTaskClick = { showTaskCreateDialog.value = true },
+            modifier = Modifier.padding(innerPadding),
+        )
+    }
 
     if (showTaskCreateDialog.value) {
         Dialog(
@@ -51,6 +62,9 @@ fun TaskBoardSection(
                     onTaskCreate = { createdTask ->
                         taskCards.add(createdTask)
                         showTaskCreateDialog.value = false
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar(message = "새로운 태스크가 추가되었습니다.")
+                        }
                     },
                     onCancel = { showTaskCreateDialog.value = false },
                 )
