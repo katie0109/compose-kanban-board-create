@@ -110,7 +110,7 @@ private fun TaskBoardContentSection(
                 val statusTasks = tasks.filter { it.status == status }
                 StatusBoardSection(
                     status = status,
-                    statusCount = statusTasks.size,
+                    taskCardCount = statusTasks.size,
                     tasks = statusTasks,
                     modifier = Modifier.weight(1f),
 

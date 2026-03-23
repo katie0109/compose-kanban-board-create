@@ -32,7 +32,7 @@ import woowacourse.kanban.board.ui.taskCard.TaskCardSection
 @Composable
 fun StatusBoardSection(
     status: TaskStatus,
-    statusCount: Int,
+    taskCardCount: Int,
     tasks: List<TaskCard>,
     modifier: Modifier = Modifier,
 ){
@@ -43,7 +43,7 @@ fun StatusBoardSection(
             .background(statusToContentColor(status))
             .heightIn(min = 520.dp)
     ){
-        StatusBoardHeader(status = status, statusCount = statusCount)
+        StatusBoardHeader(status = status, taskCardCount = taskCardCount)
         StatusBoardContent(
             status = status,
             tasks = tasks,
@@ -55,7 +55,7 @@ fun StatusBoardSection(
 @Composable
 private fun StatusBoardHeader(
     status: TaskStatus,
-    statusCount: Int
+    taskCardCount: Int
 ){
     Box(
         modifier = Modifier
@@ -80,7 +80,7 @@ private fun StatusBoardHeader(
                     .padding(horizontal = 8.dp, vertical = 4.dp)
             ){
                 Text(
-                    text = statusCount.toString(),
+                    text = taskCardCount.toString(),
                     fontSize = 14   .sp,
                     color = Color(0xFF000000),
                     modifier = Modifier,
@@ -120,17 +120,17 @@ private fun StatusBoardSectionPreview(){
     ){
         StatusBoardSection(
             status = TaskStatus.TODO,
-            statusCount = 2,
+            taskCardCount = 2,
             tasks = emptyList(),
         )
         StatusBoardSection(
             status = TaskStatus.INPROGRESS,
-            statusCount = 1,
+            taskCardCount = 1,
             tasks = emptyList(),
         )
         StatusBoardSection(
             status = TaskStatus.DONE,
-            statusCount = 3,
+            taskCardCount = 3,
             tasks = emptyList(),
         )
     }
