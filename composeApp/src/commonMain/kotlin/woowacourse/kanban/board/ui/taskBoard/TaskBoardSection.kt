@@ -79,8 +79,12 @@ private fun TaskBoardContentSection(
     onCreateTaskClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val todoTasks = tasks.filter { it.status == TaskStatus.TODO }
-    val inProgressTasks = tasks.filter { it.status == TaskStatus.INPROGRESS }
+    val statuses = listOf(
+        TaskStatus.TODO,
+        TaskStatus.INPROGRESS,
+        TaskStatus.DONE,
+    )
+
     val doneTasks = tasks.filter { it.status == TaskStatus.DONE }
 
     val doneCount = doneTasks.size
@@ -102,24 +106,16 @@ private fun TaskBoardContentSection(
                 .padding(horizontal = 24.dp, vertical = 12.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            StatusBoardSection(
-                status = TaskStatus.TODO,
-                statusCount = todoTasks.size,
-                tasks = todoTasks,
-                modifier = Modifier.weight(1f),
-            )
-            StatusBoardSection(
-                status = TaskStatus.INPROGRESS,
-                statusCount = inProgressTasks.size,
-                tasks = inProgressTasks,
-                modifier = Modifier.weight(1f),
-            )
-            StatusBoardSection(
-                status = TaskStatus.DONE,
-                statusCount = doneCount,
-                tasks = doneTasks,
-                modifier = Modifier.weight(1f),
-            )
+            statuses.forEach { status ->
+                val statusTasks = tasks.filter { it.status == status }
+                StatusBoardSection(
+                    status = status,
+                    statusCount = statusTasks.size,
+                    tasks = statusTasks,
+                    modifier = Modifier.weight(1f),
+
+                    )
+            }
         }
     }
 }
