@@ -44,6 +44,7 @@ fun TaskStatusInputSection(
 private fun TaskStatusField(
     selectedTaskStatus: TaskStatus,
     onSelect: (TaskStatus) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -67,7 +68,12 @@ private fun TaskStatusField(
                     .clickable { onSelect(it) }
                     .padding(8.dp),
             ) {
-                Text(text = it.text, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center, color = textColor)
+                Text(
+                    text = it.text,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = textColor
+                )
             }
         }
     }

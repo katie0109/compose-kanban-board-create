@@ -27,7 +27,7 @@ fun TaskCreateBottomSection(
     Column(
         modifier = modifier.fillMaxWidth(),
     ) {
-        HorizontalDivider()
+        HorizontalDivider(modifier = modifier)
         Row(
             modifier = Modifier.fillMaxWidth().padding(horizontal = 12.dp),
             horizontalArrangement = Arrangement.End,
@@ -39,6 +39,7 @@ fun TaskCreateBottomSection(
                     containerColor = Color.White,
                     contentColor = Color.Black,
                 ),
+                modifier = modifier,
             ) {
                 Text(
                     text = "취소",
@@ -52,6 +53,7 @@ fun TaskCreateBottomSection(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF4F39F6),
                 ),
+                modifier = modifier
             ) {
                 Text("생성")
             }

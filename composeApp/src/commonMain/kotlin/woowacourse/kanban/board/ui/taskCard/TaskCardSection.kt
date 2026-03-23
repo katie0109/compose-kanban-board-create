@@ -23,7 +23,10 @@ import woowacourse.kanban.board.model.TaskStatus
 import woowacourse.kanban.board.model.Title
 
 @Composable
-fun TaskCardSection(taskCard: TaskCard) {
+fun TaskCardSection(
+    taskCard: TaskCard,
+    modifier: Modifier = Modifier,
+    ) {
     Box(
         modifier = Modifier.background(Color.White)
             .border(
@@ -31,7 +34,9 @@ fun TaskCardSection(taskCard: TaskCard) {
             shape = RoundedCornerShape(8.dp),
         ).width(250.dp).padding(8.dp),
     ) {
-        Column {
+        Column(
+            modifier = modifier
+        ) {
             TitleSection(title = taskCard.title)
             if (!taskCard.description.isBlank()) {
                 DescriptionSection(description = taskCard.description)

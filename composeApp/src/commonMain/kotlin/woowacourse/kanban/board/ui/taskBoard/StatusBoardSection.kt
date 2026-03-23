@@ -83,6 +83,7 @@ private fun StatusBoardHeader(
                     text = statusCount.toString(),
                     fontSize = 14   .sp,
                     color = Color(0xFF000000),
+                    modifier = Modifier,
                 )
             }
         }

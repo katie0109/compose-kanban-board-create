@@ -87,7 +87,9 @@ private fun TaskBoardContentSection(
     val totalCount = tasks.size
     val ratio = calculateProgress(doneCount, totalCount)
 
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+    ) {
         TaskBoardHeader(onCreateTaskClick = onCreateTaskClick)
         TaskBoardProgressSection(
             doneCount = doneCount,

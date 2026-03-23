@@ -46,10 +46,11 @@ fun TaskCreateHeaderSection(
                 imageVector = Icons.Filled.Close,
                 contentDescription = "닫기",
                 tint = Color.Black,
+                modifier = Modifier,
             )
         }
     }
-    HorizontalDivider()
+    HorizontalDivider(modifier = modifier)
 }
 
 @Preview(showBackground = true)

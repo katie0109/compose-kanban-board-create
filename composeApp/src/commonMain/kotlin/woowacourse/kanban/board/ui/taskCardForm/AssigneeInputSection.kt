@@ -30,7 +30,9 @@ fun AssigneeInputSection(
     onSelect: (Assignee) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+    ) {
         Text(
             text = "담당자 *",
             fontSize = Font.FORMTITLE.size,
@@ -52,6 +54,7 @@ private fun AssigneeField(
     assignees: List<Assignee>,
     selected: Assignee,
     onSelect: (Assignee) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),

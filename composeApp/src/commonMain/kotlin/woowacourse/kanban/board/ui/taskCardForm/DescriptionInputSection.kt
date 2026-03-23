@@ -24,7 +24,9 @@ fun DescriptionInputSection(
     modifier: Modifier = Modifier,
     onDescriptionChange: (String) -> Unit = {},
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+    ) {
         Text(
             text = "설명",
             fontSize = Font.FORMTITLE.size,
@@ -44,6 +46,7 @@ fun DescriptionInputSection(
 private fun DescriptionInputField(
     description: String,
     onDescriptionChange: (String) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     OutlinedTextField(
         value = description,

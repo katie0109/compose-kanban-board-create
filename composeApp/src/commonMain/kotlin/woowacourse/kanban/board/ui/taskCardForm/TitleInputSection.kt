@@ -49,6 +49,7 @@ private fun TitleInputField(
     title: String,
     onTitleChange: (String) -> Unit,
     errorMessage: String?,
+    modifier: Modifier = Modifier,
 ) {
     var isFocused by remember { mutableStateOf(false) }
 
@@ -89,11 +90,15 @@ private fun TitleInputField(
 }
 
 @Composable
-private fun TitleSupportingText(text: String) {
+private fun TitleSupportingText(
+    text: String,
+    modifier: Modifier = Modifier,
+) {
     Text(
         text = text,
         fontSize = Font.FORMEXPLAIN.size,
         fontWeight = Font.FORMEXPLAIN.weight,
+        modifier = modifier,
     )
 }
 

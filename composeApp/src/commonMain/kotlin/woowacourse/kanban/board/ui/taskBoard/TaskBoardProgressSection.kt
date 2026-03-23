@@ -50,6 +50,7 @@ private fun ProgressText(
     doneCount: Int,
     totalCount: Int,
     ratio: Float,
+    modifier: Modifier = Modifier,
 ){
     val percent = (ratio * 100).toInt()
     Text(

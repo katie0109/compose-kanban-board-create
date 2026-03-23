@@ -24,7 +24,9 @@ fun TagInputSection(
     onTagsChange: (String) -> Unit = {},
     errorMessage: String? = null,
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+    ) {
         Text(
             text = "태그",
             fontSize = Font.FORMTITLE.size,
@@ -44,6 +46,7 @@ private fun TagInputField(
     tags: String,
     onTagsChange: (String) -> Unit,
     errorMessage: String?,
+    modifier: Modifier = Modifier
 ) {
     val isError = tags.isNotEmpty() && errorMessage != null
     val supportingText = errorMessage ?: "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다."

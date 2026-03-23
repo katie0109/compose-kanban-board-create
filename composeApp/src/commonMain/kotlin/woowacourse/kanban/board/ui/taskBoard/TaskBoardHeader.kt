@@ -35,17 +35,24 @@ fun TaskBoardHeader(
 }
 
 @Composable
-private fun TaskBoardTitle() {
+private fun TaskBoardTitle(
+    modifier: Modifier = Modifier
+) {
     Text(
         text = "Compose Desktop 칸반 보드",
         fontSize = 24.sp,
         fontWeight = FontWeight.Bold,
+        modifier = Modifier,
     )
 }
 
 @Composable
-private fun TaskCardCreateButton(onClick: () -> Unit) {
+private fun TaskCardCreateButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
     Button(
+        modifier = Modifier,
         onClick = onClick,
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
